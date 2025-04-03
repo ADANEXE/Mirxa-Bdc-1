@@ -59,10 +59,11 @@ export default function App() {
 
   return (
     <main>
+      <h1>Banana Dog Coin (BDC) Mining</h1>
       {user ? (
         <div>
           <p>Welcome, {user.displayName}!</p>
-          <p>BDC Mined: {minedBDC}</p>
+          <p>You have mined: {minedBDC} BDC</p>
           <button onClick={toggleMining}>
             {isMining ? 'Stop Mining' : 'Start Mining'}
           </button>
