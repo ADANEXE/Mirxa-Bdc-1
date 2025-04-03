@@ -6,6 +6,29 @@ import { useState, useEffect } from 'react'
 
 export default function App() {
   const [user, setUser] = useState(null);
+  const [miningAmount, setMiningAmount] = useState(0);
+  const [isMining, setIsMining] = useState(false);
+
+  useEffect(() => {
+    let miningInterval;
+    
+    if (isMining) {
+      miningInterval = setInterval(() => {
+        console.log("Mining BDC...");
+        setMiningAmount(prevAmount => prevAmount + 1);
+      }, 5000); // Using 5 seconds for testing, change to 5 * 60 * 60 * 1000 for production
+    }
+
+    return () => {
+      if (miningInterval) {
+        clearInterval(miningInterval);
+      }
+    };
+  }, [isMining]);
+
+  const toggleMining = () => {
+    setIsMining(!isMining);
+  };
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -39,6 +62,10 @@ export default function App() {
       {user ? (
         <div>
           <p>Welcome, {user.displayName}!</p>
+          <p>BDC Mined: {miningAmount}</p>
+          <button onClick={toggleMining}>
+            {isMining ? 'Stop Mining' : 'Start Mining'}
+          </button>
           <button onClick={logout}>Logout</button>
         </div>
       ) : (
