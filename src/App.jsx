@@ -1,5 +1,7 @@
+
 import './App.css'
-import app from './firebase'
+import { auth, provider } from './firebase'
+import { signInWithPopup, signOut } from 'firebase/auth'
 
 export default function App() {
   return (
