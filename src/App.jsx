@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 
 export default function App() {
   const [user, setUser] = useState(null);
-  const [miningAmount, setMiningAmount] = useState(0);
+  const [minedBDC, setMinedBDC] = useState(0);
   const [isMining, setIsMining] = useState(false);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function App() {
     if (isMining) {
       miningInterval = setInterval(() => {
         console.log("Mining BDC...");
-        setMiningAmount(prevAmount => prevAmount + 1);
+        setMinedBDC(prevAmount => prevAmount + 1);
       }, 5 * 60 * 60 * 1000); // 5 hours
     }
 
@@ -62,7 +62,7 @@ export default function App() {
       {user ? (
         <div>
           <p>Welcome, {user.displayName}!</p>
-          <p>BDC Mined: {miningAmount}</p>
+          <p>BDC Mined: {minedBDC}</p>
           <button onClick={toggleMining}>
             {isMining ? 'Stop Mining' : 'Start Mining'}
           </button>
