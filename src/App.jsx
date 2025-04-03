@@ -16,7 +16,7 @@ export default function App() {
       miningInterval = setInterval(() => {
         console.log("Mining BDC...");
         setMiningAmount(prevAmount => prevAmount + 1);
-      }, 5000); // Using 5 seconds for testing, change to 5 * 60 * 60 * 1000 for production
+      }, 5 * 60 * 60 * 1000); // 5 hours
     }
 
     return () => {
